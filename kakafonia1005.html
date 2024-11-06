@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решение алгоритмической задачи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff7f50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label, input, button {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        input[type="number"], button {
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff5722;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .link {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        .link a {
+            color: #ff7f50;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Решение алгоритмической задачи</h1>
+    </header>
+
+    <main>
+        <h2>Определите тип места в плацкартном вагоне</h2>
+        <p>Введите номер места в плацкартном вагоне, чтобы определить, какое это место:</p>
+
+        <!-- Форма ввода -->
+        <label for="seatNumber">Номер места:</label>
+        <input type="number" id="seatNumber" placeholder="Введите номер места" required>
+        <button onclick="checkSeat()">Оценить</button>
+
+        <!-- Результат -->
+        <div class="result" id="result"></div>
+
+        <!-- Ссылка на задание -->
+        <div class="link">
+            <a href="https://github.com/vmarshirov/g06u28/blob/main/task_01/02_numbres%26tasks.txt" target="_blank">Посмотреть задание</a>
+        </div>
+    </main>
+
+    <script>
+        function checkSeat() {
+            // Получаем номер места
+            const seatNumber = document.getElementById("seatNumber").value;
+            let resultText = '';
+
+            // Проверяем условия для определения типа места
+            if (seatNumber < 1 || seatNumber > 54) {
+                resultText = "Номер места должен быть от 1 до 54!";
+            } else if (seatNumber % 2 === 0) {
+                // Проверка на верхнее и нижнее место (четное - верхнее, нечетное - нижнее)
+                if (seatNumber <= 36) {
+                    // Купе
+                    resultText = "Это нижнее место в купе.";
+                } else {
+                    // Боковое
+                    resultText = "Это нижнее место в боковом.";
+                }
+            } else {
+                // Нечетное место
+                if (seatNumber <= 36) {
+                    // Купе
+                    resultText = "Это верхнее место в купе.";
+                } else {
+                    // Боковое
+                    resultText = "Это верхнее место в боковом.";
+                }
+            }
+
+            // Выводим результат
+            document.getElementById("result").textContent = resultText;
+        }
+    </script>
+
+</body>
+</html>
